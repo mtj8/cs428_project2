@@ -65,7 +65,7 @@ void* serve_pinger(void* arg) {
         return NULL;
     }
 
-    // exit thread if no ping received for 30 seconds
+    // 30 second timeout
     timeval timeout;
     timeout.tv_sec = 30;
     timeout.tv_usec = 0;
@@ -78,7 +78,7 @@ void* serve_pinger(void* arg) {
         memset(&msg, 0, sizeof(msg));
         int bytes = recvfrom(serverSD, (char *)&msg, sizeof(msg), MSG_WAITALL, (struct sockaddr *)&cliAddr, &len);
 
-        if (bytes < 0)
+        if (bytes < 0) // exit thread if timeout
         {
             cout << "[SERVER] Server UDP Pinger Timed Out" << endl;
             close(serverSD);
@@ -298,7 +298,7 @@ int main(int argc, char* argv[]) {
     for (pthread_t thread : threads) {
         pthread_join(thread, NULL);
     }
-    pthread_join(pinger_thread, NULL);
+    pthread_join(pinger_thread, NULL); // wait for pinger to finish
     close(server_sd);
 
     return 0;
