@@ -58,14 +58,14 @@ int main(int argc, char *argv[]) {
     auto start = chrono::steady_clock::now();
 
     for (int i = 0 ; i < 90; i++) {
-        
-        // print ping message
-        memset(&ping, 0, sizeof(ping));
 
         auto send_time_point = chrono::steady_clock::now();
         auto send_time = send_time_point.time_since_epoch();
         auto send_ns = chrono::duration_cast<chrono::nanoseconds>(send_time).count();
+        
+        // print ping message
         stringstream now_ss;
+        memset(&ping, 0, sizeof(ping));
         now_ss << "ping," << seq << "," << send_ns;
         string now_str = now_ss.str();
         strncpy(ping, now_str.c_str(), sizeof(ping) - 1);
