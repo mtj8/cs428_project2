@@ -48,7 +48,7 @@ int main(int argc, char *argv[]) {
     long long min_rtt = 1000000000;
     long long total_time = 0;
 
-    int seq = 0;
+    int seq = 1;
     char ping[1024];
     char msg[1024];
 
@@ -91,7 +91,7 @@ int main(int argc, char *argv[]) {
             
             // parse and create echo
             string echo(msg);
-            stringstream echo_ss(ping);
+            stringstream echo_ss(msg);
             string type, echo_seq, timestamp;
 
             getline(echo_ss, type, ',');
@@ -104,16 +104,16 @@ int main(int argc, char *argv[]) {
             if (stoi(echo_seq) != seq) {
                 cout << "[CLIENT] Sequence numbers don't match. Skipping RTT calculation..." << endl;
             }
+            else {
+                if (rtt_ns > max_rtt) {
+                    max_rtt = rtt_ns;
+                }
+                if (rtt_ns < min_rtt) {
+                    min_rtt = rtt_ns;
+                }
 
-            if (rtt_ns > max_rtt) {
-                max_rtt = rtt_ns;
+                total_time = total_time + rtt_ns;
             }
-            if (rtt_ns < min_rtt) {
-                min_rtt = rtt_ns;
-            }
-
-            total_time = total_time + rtt_ns;
-
         }
         total_rtts++;
 
