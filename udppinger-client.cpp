@@ -130,12 +130,17 @@ int main(int argc, char *argv[]) {
     //cout << "[CLIENT] Time elapsed: " << three_minutes << endl;
 
     // print RTT statistics 
-    cout << "[CLIENT] RTT statistics:" << endl;
-    cout << "         Minimum RTT: " << min_rtt << " nanoseconds" << endl;
-    cout << "         Maximum RTT: " << max_rtt << " nanoseconds" << endl;
-    cout << "         Total Successful RTTs: " << total_rtts - failed_rtts << endl;
-    cout << "         Packet loss %: " << (float(failed_rtts) / float(total_rtts)) * 100 << endl;
-    cout << "         Average RTT: " << total_time / (total_rtts - failed_rtts) << " nanoseconds" << endl;
-
+    if (total_rtts == failed_rtts) {
+        cout << "[CLIENT] No successful RTTs. Skipping RTT statistics..." << endl;
+    }
+    else {
+        cout << "[CLIENT] RTT statistics:" << endl;
+        cout << "         Minimum RTT: " << min_rtt << " nanoseconds" << endl;
+        cout << "         Maximum RTT: " << max_rtt << " nanoseconds" << endl;
+        cout << "         Total Successful RTTs: " << total_rtts - failed_rtts << endl;
+        cout << "         Packet loss %: " << (float(failed_rtts) / float(total_rtts)) * 100 << endl;
+        cout << "         Average RTT: " << total_time / (total_rtts - failed_rtts) << " nanoseconds" << endl;
+    }
+    
     return EXIT_SUCCESS;
 }
