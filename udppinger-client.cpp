@@ -125,8 +125,9 @@ int main(int argc, char *argv[]) {
     }
     auto end = chrono::steady_clock::now();
 
+    // test for 3 minutes
     // auto three_minutes = chrono::duration_cast<chrono::seconds>(end - start).count();
-    // cout << "[CLIENT] Time elapsed: " << three_minutes << endl;
+    //cout << "[CLIENT] Time elapsed: " << three_minutes << endl;
 
     // print RTT statistics 
     cout << "[CLIENT] RTT statistics:" << endl;

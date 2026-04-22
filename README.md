@@ -8,17 +8,25 @@
 
 [Provide a short description of your program's functionality, no more than a couple sentences]: #
 
+A UDP pinger with client-side statistics, simulated packet loss, and an integration into an existing webserver.
+
 ### NOTES, KNOWN BUGS, AND/OR INCOMPLETE PARTS
 
 [Add any notes you have here and/or any parts of the project you were not able to complete]: #
+
+I've tested the program with valgrind and I didn't find any bugs.
 
 ### REFERENCES
 
 [List any outside resources used]: #
 
+StackOverflow and C++ documentation for figuring out how to use chrono for timers
+
 ### INSTRUCTIONS
 
 [Provide clear and complete step-by-step instructions on how to run and test your project]: #
+
+Run the webserver with ./webserver \<port> and the client-side pinger with ./udppinger-client \<port>. The webserver will use the same port for both the HTTP connection and UDP pinger connection. The pinger will run for 90 for loops, each lasting two seconds (three minutes total).
 
 ### SUBMISSION
 
@@ -26,13 +34,13 @@ I have done this assignment completely on my own. I have not copied it, nor have
 
 By signing my name below and submitting the project, I confirm the above statement is true and that I have followed the course guidelines and policies.
 
-* **Submission date:**
+* **Submission date:** April 22, 2026
 
-* **Team member 1 name:**
+* **Team member 1 name:** Matt-Joshua Tan
 
-* **Team member 1 tasks:**
+* **Team member 1 tasks:** Everything
 
-* **Team member 2 name (N/A, if not applicable):**
+* **Team member 2 name (N/A, if not applicable):** N/A
 
-* **Team member 2 tasks (N/A, if not applicable):**
+* **Team member 2 tasks (N/A, if not applicable):** N/A
 
